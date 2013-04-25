@@ -4,9 +4,14 @@ class Project < ActiveRecord::Base
 
   fields do
     name :string
+    phases_count :integer, :default => 0, :null => false
     timestamps
   end
   attr_accessible :name
+  attr_accessible :name, :phases
+  has_many :phases, :dependent => :destroy, :inverse_of => :project
+
+  children :phases
 
   # --- Permissions --- #
 

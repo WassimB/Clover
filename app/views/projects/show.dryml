@@ -1,0 +1,7 @@
+<show-page>
+  <collection: replace>
+  <table-plus with="&@phases" fields="this, tasks_count, status">
+    <empty-message:>No phases match your criteria</empty-message:>
+  </table-plus>
+  </collection:>
+</show-page>

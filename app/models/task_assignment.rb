@@ -5,7 +5,10 @@ class TaskAssignment < ActiveRecord::Base
   fields do
     timestamps
   end
-  attr_accessible 
+  attr_accessible :junior, :junior_id, :task, :task_id
+
+  belongs_to :junior, :inverse_of => :task_assignments
+  belongs_to :task, :inverse_of => :task_assignments
 
   # --- Permissions --- #
 

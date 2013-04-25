@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425114202) do
+ActiveRecord::Schema.define(:version => 20130425115833) do
 
   create_table "juniors", :force => true do |t|
     t.string   "crypted_password",          :limit => 40
@@ -28,5 +28,45 @@ ActiveRecord::Schema.define(:version => 20130425114202) do
   end
 
   add_index "juniors", ["state"], :name => "index_juniors_on_state"
+
+  create_table "phases", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "status"
+    t.integer  "tasks_count", :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "project_id"
+  end
+
+  add_index "phases", ["project_id"], :name => "index_phases_on_project_id"
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.integer  "phases_count", :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "task_assignments", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "junior_id"
+    t.integer  "task_id"
+  end
+
+  add_index "task_assignments", ["junior_id"], :name => "index_task_assignments_on_junior_id"
+  add_index "task_assignments", ["task_id"], :name => "index_task_assignments_on_task_id"
+
+  create_table "tasks", :force => true do |t|
+    t.string   "description"
+    t.date     "deadline"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "phase_id"
+  end
+
+  add_index "tasks", ["phase_id"], :name => "index_tasks_on_phase_id"
 
 end

@@ -1,0 +1,9 @@
+<show-page>
+  <content-body:>
+    <h3><Your/> Assigned Tasks</h3>
+    <repeat with="&@junior.tasks.group_by(&:phase)">
+      <h4>Phase: <a with="&this_key"/></h4>
+      <collection/>
+    </repeat>
+  </content-body:>
+</show-page>

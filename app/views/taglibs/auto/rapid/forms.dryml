@@ -48,7 +48,7 @@
 <def tag="form" for="Phase">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="" param/>
+    <field-list fields="title, description, status, project" param/>
     <div param="actions">
       <submit label="#{ht 'phase.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -60,7 +60,7 @@
 <def tag="form" for="Project">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="" param/>
+    <field-list fields="name" param/>
     <div param="actions">
       <submit label="#{ht 'project.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -72,7 +72,7 @@
 <def tag="form" for="Task">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="" param/>
+    <field-list fields="description, deadline, phase" param/>
     <div param="actions">
       <submit label="#{ht 'task.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

@@ -14,6 +14,11 @@
     <header: param>
       <h4 param="heading"><a><name/></a></h4>
     </header:>
+    <body: param>
+      <ht key="task.collection.count" count="&this.tasks.size">
+         <count:tasks param/>
+      </ht>
+    </body:>
   </card>
 </def>
 
@@ -22,6 +27,11 @@
     <header: param>
       <h4 param="heading"><a><name/></a></h4>
     </header:>
+    <body: param>
+      <ht key="phase.collection.count" count="&this.phases.size">
+         <count:phases param/>
+      </ht>
+    </body:>
   </card>
 </def>
 
@@ -29,6 +39,14 @@
   <card class="task" param="default" merge>
     <header: param>
       <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="TaskAssignment">
+  <card class="task-assignment" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
     </header:>
   </card>
 </def>

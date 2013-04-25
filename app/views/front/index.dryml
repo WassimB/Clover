@@ -4,11 +4,11 @@
 
   <content:>
     <header class="content-header hero-unit">
-      <h1>Welcome to <app-name/></h1>
+      <h1>Clover's clever, use it ! <app-name/></h1>
       <section class="welcome-message">
-        <h3>Congratulations! Your Hobo Rails App is up and running</h3>
+        <h3>Still rough around the edges but Clover, JEENISo's management web app, is pretty functional !</h3>
         <ul>
-          <li>To customise this page: edit app/views/front/index.dryml</li>
+          <%= link_to image_tag("jeeniso.png", alt: "jeeniso"), 'http://jeeniso.net/' %>
         </ul>
 
         <% if Junior.count == 0 -%>

@@ -275,6 +275,28 @@
 
     <content-body: param>
       <view:description param="description" />
+      <field-list fields="status, project" param/>
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="task.collection.heading" count="&this.tasks.count" >
+            <human-collection-name collection="tasks" your/>
+          </ht>
+        </h3>
+
+        <collection:tasks param/>
+
+        <section param="add-to-collection" if="&can_create?(@phase.tasks)">
+          <h3 param="add-form-heading">
+            <ht key="task.collection.add_form_heading" count="1">
+              Add a Task
+            </ht>
+          </h3>
+          <form with="&@task || new_for_current_user(@phase.tasks)" owner="phase" without-cancel param>
+            <field-list: skip="phase"/>
+            <submit: label="#{ht 'task.actions.add', :default=>['Add'] }"/>
+          </form>
+        </section>
+      </section>
     </content-body:>
 
   </page>
@@ -299,6 +321,36 @@
       <form param/>
     </content-body:>
 
+  </page>
+</def>
+
+
+
+<def tag="new-for-project-page" polymorphic/>
+<def tag="new-for-project-page" for="Phase">
+  <page merge title="#{ht 'phase.new_for_owner.title', :default=>['New Phase for']} #{name :with => @project}">
+    <body: class="new-for-owner-page  phase" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="phase.new_for_owner.heading">
+          New Phase
+        </ht>
+      </h2>
+      <h3 param="subheading">
+        <ht key="phase.new_for_owner.subheading">
+          For:
+        </ht>
+        <a with="&@project"/>
+      </h3>
+    </content-header:>
+
+    <content-body: param>
+      <form owner="project" method="post" param>
+        <field-list: skip="project"/>
+        <submit: label="#{ht 'phase.actions.create', :default=>['Create Phase']}"/>
+      </form>
+    </content-body:>
   </page>
 </def>
 
@@ -386,6 +438,21 @@
     </content-header:>
 
     <content-body: param>
+      <section param="collection-section">
+        <h3 param="collection-heading">
+          <ht key="phase.collection.heading" count="&this.phases.count" >
+            <human-collection-name collection="phases" your/>
+          </ht>
+        </h3>
+
+        <collection:phases param/>
+
+        <a:phases action="new" if="&can_create?(@project.phases)" param="new-link">
+          <ht key="phase.actions.new" count="1">
+            New Phase
+          </ht>
+        </a:phases>
+      </section>
     </content-body:>
 
   </page>
@@ -481,6 +548,7 @@
     <body: class="show-page task" param/>
 
     <content-header: param>
+      <a:phase param="parent-link">&laquo; <ht key="task.actions.back_to_parent" parent="Phase" name="&this">Back to <name/></ht></a:phase>
       <h2 param="heading">
         <ht key="task.show.heading" name="#{name(:no_wrapper => true)}">
           Task <name/>
@@ -498,6 +566,7 @@
 
     <content-body: param>
       <view:description param="description" />
+      <field-list fields="deadline" param/>
     </content-body:>
 
   </page>
@@ -524,6 +593,9 @@
 
   </page>
 </def>
+
+
+
 
 
 

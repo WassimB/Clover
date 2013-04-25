@@ -15,3 +15,13 @@
 <include src="taglibs/auto/rapid/forms"/>
 
 <include src="application"/>
+
+<extend tag="card" for="Task">
+  <old-card merge>
+    <append-body:>
+    <div class="juniors">
+      Assigned juniors: <repeat:juniors join=", "><a/></repeat><else>None</else>
+    </div>
+    </append-body:>
+  </old-card>
+</extend>
