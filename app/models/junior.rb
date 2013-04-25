@@ -14,6 +14,7 @@ class Junior < ActiveRecord::Base
 
   has_many :task_assignments, :dependent => :destroy, :inverse_of => :junior
   has_many :tasks, :through => :task_assignments
+  has_many :projects, :class_name => "Project", :foreign_key => "owner_id", :inverse_of => :owner
 
   # This gives admin rights and an :active state to the first sign-up.
   # Just remove it if you don't want that

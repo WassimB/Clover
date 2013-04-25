@@ -416,6 +416,8 @@
 
       <record-flags fields="" param/>
 
+      <a:owner param="creator-link"/>
+
       <a action="edit" if="&can_edit?" param="edit-link">
         <ht key="project.actions.edit" name="#{name(:no_wrapper => true)}">
           Edit Project
@@ -556,7 +558,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="deadline" param/>
+      <field-list fields="deadline, position" param/>
     </content-body:>
 
   </page>

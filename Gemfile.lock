@@ -37,6 +37,7 @@ GEM
     acts_as_list (0.2.0)
       activerecord (>= 3.0)
     arel (3.0.2)
+    bluecloth (2.2.0)
     bootstrap-datepicker-rails (1.0.0.5)
       railties (>= 3.0)
     bootstrap-sass (2.3.1.0)
@@ -156,6 +157,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_list
+  bluecloth
   coffee-rails (~> 3.2.1)
   hobo (= 2.0.0)
   hobo_bootstrap (= 2.0.0)

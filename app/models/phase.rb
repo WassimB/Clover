@@ -4,7 +4,7 @@ class Phase < ActiveRecord::Base
 
   fields do
     title       :string
-    description :text
+    description :markdown
     status enum_string(:ongoing, :finished, :forthcoming, :halted)
     tasks_count :integer, :default => 0, :null => false
     timestamps
@@ -18,15 +18,15 @@ class Phase < ActiveRecord::Base
   # --- Permissions --- #
 
   def create_permitted?
-    acting_user.administrator?
+    project.creatable_by?(acting_user)
   end
 
   def update_permitted?
-    acting_user.signed_up? && !project_changed?
+    project.updatable_by?(acting_user)
   end
 
   def destroy_permitted?
-    acting_user.administrator?
+    project.destroyable_by?(acting_user)
   end
 
   def view_permitted?(field)

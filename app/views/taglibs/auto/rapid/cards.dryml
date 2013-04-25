@@ -28,6 +28,7 @@
       <h4 param="heading"><a><name/></a></h4>
     </header:>
     <body: param>
+      <a:owner param="creator-link"/>
       <ht key="phase.collection.count" count="&this.phases.size">
          <count:phases param/>
       </ht>

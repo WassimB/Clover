@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425210526) do
+ActiveRecord::Schema.define(:version => 20130425220149) do
 
   create_table "juniors", :force => true do |t|
     t.string   "crypted_password",          :limit => 40
@@ -46,7 +46,10 @@ ActiveRecord::Schema.define(:version => 20130425210526) do
     t.integer  "phases_count", :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "owner_id"
   end
+
+  add_index "projects", ["owner_id"], :name => "index_projects_on_owner_id"
 
   create_table "task_assignments", :force => true do |t|
     t.datetime "created_at"
