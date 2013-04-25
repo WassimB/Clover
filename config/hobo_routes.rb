@@ -5,6 +5,18 @@
 Clover::Application.routes.draw do
 
 
+  # Resource routes for controller tasks
+  resources :tasks
+
+
+  # Resource routes for controller projects
+  resources :projects
+
+
+  # Resource routes for controller phases
+  resources :phases
+
+
   # Resource routes for controller juniors
   resources :juniors, :only => [:edit, :show, :create, :update, :destroy] do
     collection do
