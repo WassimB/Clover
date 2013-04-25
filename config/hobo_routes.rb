@@ -5,6 +5,10 @@
 Clover::Application.routes.draw do
 
 
+  # Resource routes for controller project_memberships
+  resources :project_memberships, :only => [:create, :update, :destroy]
+
+
   # Resource routes for controller tasks
   resources :tasks, :only => [:edit, :create, :update, :destroy] do
     collection do

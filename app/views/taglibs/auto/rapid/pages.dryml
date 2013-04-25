@@ -344,6 +344,116 @@
 
 
 
+<!-- ====== ProjectMembership Pages ====== -->
+
+<def tag="index-page" for="ProjectMembership">
+  <page merge title="#{ht 'project_membership.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page project-membership" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="project_membership.index.heading">
+          <model-name-human model="&model"/>
+        </ht>
+      </h2>
+
+      <p param="count" if>
+        <ht key="project_membership.collection.count" count="&collection_count">
+          <count summary/>
+        </ht>
+      </p>
+    </content-header:>
+
+    <content-body: param>
+
+      <page-nav param="top-page-nav"/>
+
+      <collection param/>
+
+      <page-nav param="bottom-page-nav"/>
+
+
+      <div param="new-form">
+        <h3 param="new-form-heading">
+          <ht key="project_membership.form.new.heading">New Project membership</ht>
+        </h3>
+        <form with="&@invalid_record || new_for_current_user(ProjectMembership)" param/>
+      </div>
+
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="ProjectMembership">
+  <page merge title="#{ht 'project_membership.new.title', :default=>[' New Project membership'] }">
+    <body: class="new-page project-membership" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="project_membership.new.heading">
+          New Project membership
+        </ht>
+      </h2>
+    </content-header:>
+
+    <content-body: param>
+      <form param>
+        <submit: label="#{ht 'project_membership.actions.create', :default=>['Create Project membership']}"/>
+      </form>
+    </content-body:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="ProjectMembership">
+  <page merge title="#{ht 'project_membership.show.title', :default=>['Project membership'], :name => name(:no_wrapper => true) }" without-aside >
+
+    <body: class="show-page project-membership" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="project_membership.show.heading" name="#{name(:no_wrapper => true)}">
+          Project membership <name/>
+        </ht>
+      </h2>
+
+      <record-flags fields="" param/>
+    </content-header:>
+
+    <content-body: param>
+      <field-list fields="junior, project" param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="ProjectMembership">
+  <page merge title="#{ht 'project_membership.edit.title', :default=>['Edit Project membership'], :name => name(:no_wrapper => true) }">
+
+    <body: class="edit-page project-membership" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="project_membership.edit.heading" name="#{name(:no_wrapper => true)}">
+          Edit Project membership
+        </ht>
+      </h2>
+      <delete-button label="#{ht 'project_membership.actions.delete', :default=>['Remove This Project membership']}" param/>
+    </content-header:>
+
+    <content-body: param>
+      <form param/>
+    </content-body:>
+
+  </page>
+</def>
+
+
+
+
+
 <!-- ====== Project Pages ====== -->
 
 <def tag="index-page" for="Project">
