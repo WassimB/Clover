@@ -11,7 +11,7 @@ class Phase < ActiveRecord::Base
   end
   attr_accessible :title, :description, :status, :project, :project_id, :tasks
   belongs_to :project, :inverse_of => :phases, :counter_cache => true
-  has_many :tasks, :dependent => :destroy, :inverse_of => :phase
+  has_many :tasks, :dependent => :destroy, :inverse_of => :phase, :order => :position
 
   children :tasks
 

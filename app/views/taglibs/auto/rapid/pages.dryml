@@ -6,9 +6,7 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
-    <nav-item with="&Phase"><ht key="phase.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Project"><ht key="project.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
-    <nav-item with="&Task"><ht key="task.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
 
@@ -283,19 +281,7 @@
           </ht>
         </h3>
 
-        <collection:tasks param/>
-
-        <section param="add-to-collection" if="&can_create?(@phase.tasks)">
-          <h3 param="add-form-heading">
-            <ht key="task.collection.add_form_heading" count="1">
-              Add a Task
-            </ht>
-          </h3>
-          <form with="&@task || new_for_current_user(@phase.tasks)" owner="phase" without-cancel param>
-            <field-list: skip="phase"/>
-            <submit: label="#{ht 'task.actions.add', :default=>['Add'] }"/>
-          </form>
-        </section>
+        <sortable-collection:tasks param="collection"/>
       </section>
     </content-body:>
 
@@ -505,9 +491,6 @@
     </content-header:>
 
     <content-body: param>
-      <a action="new" to="&model" param="new-link">
-        <ht key="task.actions.new">New Task</ht>
-      </a>
 
       <page-nav param="top-page-nav"/>
 
@@ -515,6 +498,13 @@
 
       <page-nav param="bottom-page-nav"/>
 
+
+      <div param="new-form">
+        <h3 param="new-form-heading">
+          <ht key="task.form.new.heading">New Task</ht>
+        </h3>
+        <form with="&@invalid_record || new_for_current_user(Task)" param/>
+      </div>
 
     </content-body:>
   </page>
@@ -593,9 +583,6 @@
 
   </page>
 </def>
-
-
-
 
 
 

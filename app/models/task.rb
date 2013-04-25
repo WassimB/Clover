@@ -13,6 +13,8 @@ class Task < ActiveRecord::Base
   has_many :task_assignments, :dependent => :destroy, :inverse_of => :task
   has_many :juniors, :through => :task_assignments, :accessible => true, :dependent => :destroy
 
+  acts_as_list :scope => :phase
+
   # --- Permissions --- #
 
   def create_permitted?
