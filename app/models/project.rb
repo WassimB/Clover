@@ -11,9 +11,12 @@ class Project < ActiveRecord::Base
   attr_accessible :name, :phases
   has_many :phases, :dependent => :destroy, :inverse_of => :project
 
-  children :phases
+  children :phases, :memberships
 
   belongs_to :owner, :class_name => "Junior", :creator => true, :inverse_of => :project
+  has_many :memberships, :class_name => "ProjectMembership", :dependent => :destroy, :inverse_of => :project
+  has_many :members, :through => :memberships, :source => :junior
+  belongs_to :owner, :class_name => "Junior", :creator => true, :inverse_of => :projects
 
   # --- Permissions --- #
 
@@ -30,7 +33,8 @@ class Project < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    true
+    #true
+    acting_user.administrator? || acting_user == owner || acting_user.in?(members)
   end
 
 end

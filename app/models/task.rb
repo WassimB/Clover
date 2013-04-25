@@ -30,7 +30,8 @@ class Task < ActiveRecord::Base
   end
 
   def view_permitted?(field)
-    true
+    #true
+    phase.viewable_by?(acting_user)
   end
 
 end
