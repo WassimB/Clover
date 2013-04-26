@@ -4,9 +4,9 @@
 
   <content:>
     <header class="content-header hero-unit">
-      <h1>Clover's clever, use it ! <app-name/></h1>
+      <h1><app-name/>'s clever, use it ! </h1>
       <section class="welcome-message">
-        <h3>Still rough around the edges but Clover, JEENISo's management web app, is pretty functional !</h3>
+        <h3></h3>
         <ul>
           <%= link_to image_tag("jeeniso.png", alt: "jeeniso"), 'http://jeeniso.net/' %>
         </ul>
@@ -23,7 +23,7 @@
       </section>
     </header>
 
-    <section class="content-body">
+    
     <section with="&current_user" class="content-body" if="&logged_in?">
       <h3>Your Projects</h3>
       <collection:projects><card without-creator-link/></collection>

@@ -1,3 +1,12 @@
 <show-page>
-  <field-list: tag="editor"/>
+    <collection: replace>
+  <table-plus with="&@tasks" fields="this, description, deadline, type">
+  	<prepend-header:>
+      <div class="filter">
+        Display by tasks: <filter-menu param-name="deadline" options="&Task.all"/>
+      </div>
+    </prepend-header:>
+    <empty-message:>No phases match your criteria</empty-message:>
+  </table-plus>
+  </collection:>
 </show-page>

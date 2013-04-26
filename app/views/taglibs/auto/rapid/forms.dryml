@@ -60,7 +60,7 @@
 <def tag="form" for="ProjectMembership">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="junior, project" param/>
+    <field-list fields="contributor, junior, project" param/>
     <div param="actions">
       <submit label="#{ht 'project_membership.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

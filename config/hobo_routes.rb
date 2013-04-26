@@ -16,9 +16,28 @@ Clover::Application.routes.draw do
     end
   end
 
+  # Owner routes for controller tasks
+  resources :phases, :as => :phase, :only => [] do
+    resources :tasks, :only => [] do
+      collection do
+        post 'create', :action => 'create_for_phase'
+      end
+    end
+  end
+
 
   # Resource routes for controller projects
-  resources :projects
+  resources :projects, :only => [:edit, :show, :update, :destroy]
+
+  # Owner routes for controller projects
+  resources :juniors, :as => :owner, :only => [] do
+    resources :projects, :only => [] do
+      get 'new', :on => :new, :action => 'new_for_owner'
+      collection do
+        post 'create', :action => 'create_for_owner'
+      end
+    end
+  end
 
 
   # Resource routes for controller phases
@@ -38,6 +57,7 @@ Clover::Application.routes.draw do
   # Resource routes for controller juniors
   resources :juniors, :only => [:edit, :show, :create, :update, :destroy] do
     collection do
+      get 'complete_name'
       post 'signup', :action => 'do_signup'
       get 'signup'
     end

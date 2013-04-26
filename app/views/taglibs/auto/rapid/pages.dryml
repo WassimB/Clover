@@ -6,7 +6,6 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
-    <nav-item with="&Project"><ht key="project.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
 
@@ -282,6 +281,18 @@
         </h3>
 
         <sortable-collection:tasks param="collection"/>
+
+        <section param="add-to-collection" if="&can_create?(@phase.tasks)">
+          <h3 param="add-form-heading">
+            <ht key="task.collection.add_form_heading" count="1">
+              Add a Task
+            </ht>
+          </h3>
+          <form with="&@task || new_for_current_user(@phase.tasks)" owner="phase" without-cancel param>
+            <field-list: skip="phase"/>
+            <submit: label="#{ht 'task.actions.add', :default=>['Add'] }"/>
+          </form>
+        </section>
       </section>
     </content-body:>
 
@@ -418,7 +429,7 @@
         </ht>
       </h2>
 
-      <record-flags fields="" param/>
+      <record-flags fields="contributor" param/>
     </content-header:>
 
     <content-body: param>
@@ -475,9 +486,6 @@
     </content-header:>
 
     <content-body: param>
-      <a action="new" to="&model" param="new-link">
-        <ht key="project.actions.new">New Project</ht>
-      </a>
 
       <page-nav param="top-page-nav"/>
 
@@ -513,7 +521,7 @@
 
 
 <def tag="show-page" for="Project">
-  <page merge title="#{ht 'project.show.title', :default=>['Project'], :name => name(:no_wrapper => true) }" without-aside >
+  <page merge title="#{ht 'project.show.title', :default=>['Project'], :name => name(:no_wrapper => true) }" >
 
     <body: class="show-page project" param/>
 
@@ -553,6 +561,17 @@
       </section>
     </content-body:>
 
+    <aside: param>
+      <section param="memberships-collection-section">
+        <h3 param="memberships-collection-heading">
+          <ht key="project_membership.collection.heading" count="&this.memberships.count" >
+            <human-collection-name collection="memberships" your/>
+          </ht>
+        </h3>
+        <collection:memberships  param="memberships-collection"/>
+      </section>
+    </aside:>
+
   </page>
 </def>
 
@@ -575,6 +594,36 @@
       <form param/>
     </content-body:>
 
+  </page>
+</def>
+
+
+
+<def tag="new-for-owner-page" polymorphic/>
+<def tag="new-for-owner-page" for="Project">
+  <page merge title="#{ht 'project.new_for_owner.title', :default=>['New Project for']} #{name :with => @owner}">
+    <body: class="new-for-owner-page  project" param/>
+
+    <content-header: param>
+      <h2 param="heading">
+        <ht key="project.new_for_owner.heading">
+          New Project
+        </ht>
+      </h2>
+      <h3 param="subheading">
+        <ht key="project.new_for_owner.subheading">
+          For:
+        </ht>
+        <a with="&@owner"/>
+      </h3>
+    </content-header:>
+
+    <content-body: param>
+      <form owner="owner" method="post" param>
+        <field-list: skip="owner"/>
+        <submit: label="#{ht 'project.actions.create', :default=>['Create Project']}"/>
+      </form>
+    </content-body:>
   </page>
 </def>
 
@@ -695,6 +744,9 @@
 
   </page>
 </def>
+
+
+
 
 
 

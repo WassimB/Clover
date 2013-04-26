@@ -10,7 +10,9 @@ class Phase < ActiveRecord::Base
     timestamps
   end
   attr_accessible :title, :description, :status, :project, :project_id, :tasks
+
   belongs_to :project, :inverse_of => :phases, :counter_cache => true
+  
   has_many :tasks, :dependent => :destroy, :inverse_of => :phase, :order => :position
 
   children :tasks

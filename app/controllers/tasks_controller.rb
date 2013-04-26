@@ -4,4 +4,6 @@ class TasksController < ApplicationController
 
   auto_actions :write_only, :edit
 
+  auto_actions_for :phase, :create
+
 end
