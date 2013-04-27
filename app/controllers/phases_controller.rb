@@ -10,7 +10,7 @@ class PhasesController < ApplicationController
     @phase = find_instance
     @tasks = @phase.tasks.
       search(params[:search], :description).
-      order_by(parse_sort_param(:description, :deadline, :type))
+      order_by(parse_sort_param(:description, :deadline, :fee))
     hobo_show
   end
 end

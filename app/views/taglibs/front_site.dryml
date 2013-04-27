@@ -28,15 +28,7 @@
 
 <extend tag="form" for="Task">
   <old-form merge>
-    <field-list: fields="description, deadline, juniors, type"/>
+    <field-list: fields="description, deadline, juniors, fee"/>
   </old-form>
 </extend>
 
-<extend tag="card" for="ProjectMembership">
-  <old-card merge>
-    <body:>
-      <span>Contributor?</span>
-      <editor:contributor/>
-    </body:>
-  </old-card>
-</extend>

@@ -717,7 +717,7 @@
 
     <content-body: param>
       <view:description param="description" />
-      <field-list fields="deadline, position" param/>
+      <field-list fields="deadline, fee, position" param/>
     </content-body:>
 
   </page>

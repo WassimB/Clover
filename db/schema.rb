@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130426111913) do
+ActiveRecord::Schema.define(:version => 20130426125502) do
 
   create_table "juniors", :force => true do |t|
     t.string   "crypted_password",          :limit => 40
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(:version => 20130426111913) do
     t.datetime "updated_at"
     t.integer  "phase_id"
     t.integer  "position"
+    t.string   "fee"
   end
 
   add_index "tasks", ["phase_id"], :name => "index_tasks_on_phase_id"

@@ -6,9 +6,10 @@ class Task < ActiveRecord::Base
     description :string
     deadline    :date
     type enum_string(:Type10, :Type8, :Type5, :Type2)
+    fee enum_string(:Type10, :Type8, :Type5, :Type2)
     timestamps
   end
-  attr_accessible :description, :deadline, :type, :phase, :phase_id, :task_assignments, :juniors
+  attr_accessible :description, :deadline, :type, :phase, :fee, :phase_id, :task_assignments, :juniors
 
   belongs_to :phase, :inverse_of => :tasks, :counter_cache => true
 

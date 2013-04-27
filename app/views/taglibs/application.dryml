@@ -4,5 +4,7 @@ you can place common code in this file. -->
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs>
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item href="#{base_url}/">Project List</nav-item>
+    <nav-item href="#{base_url}/">Master List</nav-item>
   </navigation>
 </def>
